@@ -4,9 +4,10 @@ use App\GraphQL\Query\PlaytimeQuery;
 use App\GraphQL\Type\PlaytimeType;
 use App\GraphQL\Query\RankingQuery;
 use App\GraphQL\Type\RankingType;
-
 use App\GraphQL\Query\PlayersQuery;
 use App\GraphQL\Type\PlayersType;
+use App\GraphQL\Query\TrendsQuery;
+use App\GraphQL\Type\TrendsType;
 
 return [
     'prefix' => 'graphql',
@@ -19,7 +20,8 @@ return [
             'query' => [
                 'playtimeQuery' => PlaytimeQuery::class,
                 'rankingQuery'  => RankingQuery::class,
-                'playerQuery'   => PlayersQuery::class
+                'playerQuery'   => PlayersQuery::class,
+                'trendsQuery'   => TrendsQuery::class
             ],
             'mutation' => [ ],
             'middleware' => [
@@ -30,7 +32,8 @@ return [
     'types' => [
         'playtime'  => PlaytimeType::class,
         'ranking'   => RankingType::class,
-        'players'   => PlayersType::class
+        'players'   => PlayersType::class,
+        'trends'   => TrendsType::class
     ],
     'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
     'params_key'    => 'params',

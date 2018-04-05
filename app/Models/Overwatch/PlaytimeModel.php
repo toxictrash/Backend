@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Overwatch\RankingModel;
 use App\Models\Overwatch\PlayersModel;
+use App\Models\Overwatch\TrendsModel;
 
 class PlaytimeModel extends Model
 {
@@ -28,8 +29,13 @@ class PlaytimeModel extends Model
         'character_games_draw',
         'character_winrate'
     ];
+    // protected $connection = 'overwatch';
 
     public function player() {
         return $this->hasOne(PlayersModel::class, 'id', 'player_id');
+    }
+
+    public function trends() {
+        return $this->hasMany(TrendsModel::class, 'player_id', 'id')->orderBy('id', 'DESC');
     }
 }

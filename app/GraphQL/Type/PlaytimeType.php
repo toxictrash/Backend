@@ -75,6 +75,10 @@ class PlaytimeType extends GraphQLType
 				'type'  => GraphQL::type('players'),
 				'description'   => 'The Player',
 			],
+			'trends'   => [
+				'type'          => Type::listOf(GraphQL::type('trends')),
+				'description'   => 'Player Trends',
+			],
         ];
     }
 }

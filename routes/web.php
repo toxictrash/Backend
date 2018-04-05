@@ -12,10 +12,11 @@
 */
 
 Route::get('/', function () {
-    $overwatch = new App\Http\Controllers\API\Overwatch\CronjobController();
-    $overwatch->setPlayerData();
-    $overwatch->fetchApiData();
-    dd($overwatch);
+    return abort(404);
+    // $overwatch = new App\Http\Controllers\API\Overwatch\CronjobController();
+    // $overwatch->setPlayerData();
+    //$overwatch->fetchApiData();
+    // dd($overwatch);
     // $characters = new App\Helpers\Overwatch\Characters();
     // return $characters->getCharacter('soldier76');
     // return $characters->getRoles('Offense');
