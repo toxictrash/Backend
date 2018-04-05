@@ -36,7 +36,7 @@ class RankingModel extends Model
 			'player_deaths',
 			'player_kpd',
 		];
-		// protected $connection = 'overwatch';
+		protected $connection = 'overwatch';
 
     public function player() {
 		return $this->hasOne(PlayersModel::class, 'id', 'player_id');

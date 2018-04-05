@@ -15,7 +15,7 @@ class PlayersModel extends Model
 
     protected $table = 'overwatch_players';
     protected $fillable = ['name', 'slug', 'hashtag', 'active'];
-    // protected $connection = 'overwatch';
+    protected $connection = 'overwatch';
 
     public function scopeOnlyActive($query) {
         return $query->where('active', '1');

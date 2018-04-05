@@ -22,6 +22,7 @@ class OverwatchPlayers extends Seeder
 		$this->addPlayer('Noobster', '21680', 5);
         $this->addPlayer('Sensimillia', '21307', 6);
         $this->addPlayer('nerdxchan', '2356', 7);
+        $this->addPlayer('Anti', '2142', 8);
     }
 
     private function addPlayer($player, $hash, $id) {

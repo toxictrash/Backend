@@ -29,7 +29,7 @@ class PlaytimeModel extends Model
         'character_games_draw',
         'character_winrate'
     ];
-    // protected $connection = 'overwatch';
+    protected $connection = 'overwatch';
 
     public function player() {
         return $this->hasOne(PlayersModel::class, 'id', 'player_id');

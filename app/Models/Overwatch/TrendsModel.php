@@ -19,7 +19,7 @@ class TrendsModel extends Model
 			'player_games_draw',
 			'player_games_lose',
 		];
-		// protected $connection = 'overwatch';
+		protected $connection = 'overwatch';
 
 
 }
