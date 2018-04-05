@@ -158,7 +158,9 @@ class CronjobController extends OverwatchController {
 				$array['character_name'] = $character;
 				$array['character_time'] = $playtime;
 				$array['character_role'] = (isset($charactersArray['role'])) ? $charactersArray['role'] : 'missing';
-				$playtimeArray[] = $array;
+				if ($playtime > 0) {
+					$playtimeArray[] = $array;
+				}
 			}
 			$playtime = collect($playtimeArray)->sortByDesc('character_time')->slice(0, 3)->all();
 		} else {
