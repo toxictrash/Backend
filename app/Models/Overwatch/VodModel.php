@@ -15,8 +15,12 @@ class VodModel extends Model
 			'youtube_thumbnail',
 			'youtube_title',
 			'youtube_duration',
+			'active',
 		];
 		protected $connection = 'overwatch';
 
+		public function scopeOnlyActive($query) {
+			return $query->where('active', '1');
+		}
 
 }

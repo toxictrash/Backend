@@ -48,7 +48,8 @@ class YoutubeVideo extends Command
             'youtube_id'        => $videoID,
             'youtube_thumbnail' => $video->snippet->thumbnails->high->url,
             'youtube_title'     => $video->snippet->title,
-            'youtube_duration'  => $duration
+            'youtube_duration'  => $duration,
+            'active'            => '0'
         ];
         //
         $model = new VodModel($array);
