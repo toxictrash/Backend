@@ -8,6 +8,8 @@ use App\GraphQL\Query\PlayersQuery;
 use App\GraphQL\Type\PlayersType;
 use App\GraphQL\Query\TrendsQuery;
 use App\GraphQL\Type\TrendsType;
+use App\GraphQL\Query\VodQuery;
+use App\GraphQL\Type\VodType;
 
 return [
     'prefix' => 'graphql',
@@ -21,7 +23,8 @@ return [
                 'playtimeQuery' => PlaytimeQuery::class,
                 'rankingQuery'  => RankingQuery::class,
                 'playerQuery'   => PlayersQuery::class,
-                'trendsQuery'   => TrendsQuery::class
+                'trendsQuery'   => TrendsQuery::class,
+                'vodQuery'      => VodQuery::class
             ],
             'mutation' => [ ],
             'middleware' => [
@@ -33,7 +36,8 @@ return [
         'playtime'  => PlaytimeType::class,
         'ranking'   => RankingType::class,
         'players'   => PlayersType::class,
-        'trends'   => TrendsType::class
+        'trends'    => TrendsType::class,
+        'vods'      => VodType::class
     ],
     'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
     'params_key'    => 'params',

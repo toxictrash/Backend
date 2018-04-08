@@ -152,6 +152,7 @@ return [
          */
         Rebing\GraphQL\GraphQLServiceProvider::class,
         Fadion\Maneuver\ManeuverServiceProvider::class,
+        Alaouy\Youtube\YoutubeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -211,7 +212,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'GraphQL' => Rebing\GraphQL\Support\Facades\GraphQL::class,
-
+        'Youtube' => Alaouy\Youtube\Facades\Youtube::class,
     ],
 
 ];
