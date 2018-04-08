@@ -41,12 +41,13 @@ class VodQuery extends Query
             }
             if (isset($args['youtube_id'])) {
                 $query->where('youtube_id', $args['youtube_id']);
-						}
-						if (isset($args['youtube_title'])) {
-							$query->where('youtube_title', $args['youtube_title']);
-					}
+            }
+            if (isset($args['youtube_title'])) {
+                $query->where('youtube_title', $args['youtube_title']);
+            }
         };
-        $trends = VodModel::where($where);
+        $trends = VodModel::OnlyActive();
+        $trends->where($where);
         $trends->select($select);
         $trends->with($with);
         $trends->orderBy('id', 'DESC');
