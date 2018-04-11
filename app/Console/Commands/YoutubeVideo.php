@@ -51,7 +51,7 @@ class YoutubeVideo extends Command
             'youtube_title'     => $video->snippet->title,
             'youtube_duration'  => $duration,
             'processed'         => '1',
-            'active'            => '0'
+            'active'            => '1'
         ];
         //
         VodModel::updateOrCreate([
