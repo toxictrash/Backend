@@ -49,6 +49,7 @@ class YoutubeVideo extends Command
             'youtube_thumbnail' => $video->snippet->thumbnails->high->url,
             'youtube_title'     => $video->snippet->title,
             'youtube_duration'  => $duration,
+            'processed'         => '1',
             'active'            => '0'
         ];
         //

@@ -30,20 +30,22 @@ class VodMutation extends Mutation
 
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $vod = VodModel::where('youtube_id', $args['youtube_id'])->get();
+        $youtubeId = str_replace('https://www.youtube.com/watch?v=', '', $args['youtube_id']);
+        $vod = VodModel::where('youtube_id', $youtubeId)->get();
         if (!$vod->isEmpty()) {
             return null;
         } else {
             $array = [
-                'youtube_id' => $args['youtube_id'],
+                'youtube_id' => $youtubeId,
                 'youtube_thumbnail' => '',
                 'youtube_title' => '',
                 'youtube_duration' => '',
+                'processed' => '0',
                 'active' => '0',
             ];
             $model = new VodModel($array);
             $model->save();
-            return $model;
+            return $array;
         }
     }
 }
