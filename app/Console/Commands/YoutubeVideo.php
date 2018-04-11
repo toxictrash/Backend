@@ -13,7 +13,7 @@ class YoutubeVideo extends Command
      *
      * @var string
      */
-    protected $signature = 'youtube:fetch {videoID}';
+    protected $signature = 'youtube:fetch {videoID} {id?}';
 
     /**
      * The console command description.
@@ -40,6 +40,7 @@ class YoutubeVideo extends Command
     public function handle()
     {
         $videoID = $this->argument('videoID');
+        $tableID = $this->argument('id');
         $video = Youtube::getVideoInfo($videoID);
         //
         $duration = $video->contentDetails->duration;
@@ -53,7 +54,8 @@ class YoutubeVideo extends Command
             'active'            => '0'
         ];
         //
-        $model = new VodModel($array);
-        $model->save();
+        VodModel::updateOrCreate([
+            'id'    => $tableID
+        ], $array);
     }
 }

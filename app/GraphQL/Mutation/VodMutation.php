@@ -45,7 +45,7 @@ class VodMutation extends Mutation
             ];
             $model = new VodModel($array);
             $model->save();
-            return $array;
+            return $model;
         }
     }
 }
