@@ -34,14 +34,16 @@ class VodMutation extends Mutation
         if (!$vod->isEmpty()) {
             return null;
         } else {
-            /*$model = new VodModel();
-            $model->youtube_id = $args['youtube_id'];
-            $model->active = 0;
-            $model->save();
-            return [];*/
-            return [
-                'error' => 'no Job!'
+            $array = [
+                'youtube_id' => $args['youtube_id'],
+                'youtube_thumbnail' => '',
+                'youtube_title' => '',
+                'youtube_duration' => '',
+                'active' => '0',
             ];
+            $model = new VodModel($array);
+            $model->save();
+            return $model;
         }
     }
 }
