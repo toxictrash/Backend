@@ -30,7 +30,7 @@ class VodMutation extends Mutation
 
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $vod = VodModel::where('youtube_id', $args['youtube_id'])->first();
+        $vod = VodModel::where('youtube_id', $args['youtube_id'])->get();
         if (!$vod->isEmpty()) {
             return null;
         } else {

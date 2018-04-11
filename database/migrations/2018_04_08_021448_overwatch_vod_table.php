@@ -20,6 +20,7 @@ class OverwatchVodTable extends Migration
             $table->string('youtube_thumbnail');
             $table->string('youtube_title');
             $table->string('youtube_duration');
+            $table->enum('processed', ['0', '1'])->default('0');
             $table->enum('active', ['0', '1'])->default('0');
             $table->timestamps();
             $table->softDeletes();

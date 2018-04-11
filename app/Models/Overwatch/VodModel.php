@@ -23,4 +23,8 @@ class VodModel extends Model
 			return $query->where('active', '1');
 		}
 
+		public function scopeOnlyProcessed($query) {
+			return $query->where('processed', '1');
+		}
+
 }
