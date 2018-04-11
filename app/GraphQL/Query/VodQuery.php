@@ -25,7 +25,7 @@ class VodQuery extends Query
     public function args()
     {
         return [
-						'id' => ['name' => 'id', 'type' => Type::int()],
+			'id' => ['name' => 'id', 'type' => Type::int()],
             'youtube_id' => ['name' => 'youtube_id', 'type' => Type::string()],
             'youtube_title' => ['name' => 'youtube_title', 'type' => Type::string()],
         ];

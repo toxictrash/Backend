@@ -10,6 +10,7 @@ use App\GraphQL\Query\TrendsQuery;
 use App\GraphQL\Type\TrendsType;
 use App\GraphQL\Query\VodQuery;
 use App\GraphQL\Type\VodType;
+use App\GraphQL\Mutation\VodMutation;
 
 return [
     'prefix' => 'graphql',
@@ -26,7 +27,9 @@ return [
                 'trendsQuery'   => TrendsQuery::class,
                 'vodQuery'      => VodQuery::class
             ],
-            'mutation' => [ ],
+            'mutation' => [
+                'vodMutation'   => VodMutation::class
+            ],
             'middleware' => [
                 'api'
             ]
