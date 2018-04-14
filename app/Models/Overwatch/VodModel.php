@@ -16,6 +16,7 @@ class VodModel extends Model
 			'youtube_title',
 			'youtube_duration',
 			'active',
+			'processed'
 		];
 		protected $connection = 'overwatch';
 

@@ -40,7 +40,6 @@ class CronjobController extends OverwatchController {
 			$this->updatePlayer($userId);
 			sleep(10);
 		}
-		dd($this->cronjobData);
 	}
 
 	private function updatePlayerRanking($playerId) {
