@@ -66,7 +66,7 @@ class CronjobController extends OverwatchController {
 				$array['player_should_tier'] = $this->checkPoints($overall['comprank']);
 			}
 			if (!empty($overall['avatar'])) {
-				$array['player_avatar'] = $overall['avatar'];
+				$array['player_avatar'] = $this->checkAvatar($overall['avatar']);
 			}
 			if (!empty($gamestats['medals'])) {
 				$array['player_medals_total'] = intval($gamestats['medals']);
@@ -179,5 +179,13 @@ class CronjobController extends OverwatchController {
 		$tier = new Tiers();
 		$league = $tier->getTier($points);
 		return strtolower($league['title']);
+	}
+
+	private function checkAvatar($avatar) {
+		if (file_exists($avatar)) {
+			return $avatar;
+		} else {
+			return 'https://d1u1mce87gyfbn.cloudfront.net/game/unlocks/0x02500000000002F7.png';
+		}
 	}
 }
