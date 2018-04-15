@@ -64,6 +64,7 @@ class fetchProfile implements ShouldQueue
     private function savePlayerOldRanking() {
         $model = RankingModel::where('player_id', $this->profile['userId'])->first();
         if ($model) {
+            TrendsModel::where('player_id', $this->profile['userId'])->delete();
             $payload = [
                 'player_id'             => $this->profile['userId'],
                 'player_ranking'        => $model->player_ranking,
@@ -108,7 +109,7 @@ class fetchProfile implements ShouldQueue
 				$array['player_should_tier'] = $this->checkPoints($overall['comprank']);
             }
             if (!empty($overall['avatar'])) {
-				$array['player_avatar'] = $overall['avatar'];
+				$array['player_avatar'] = $this->checkAvatar($overall['avatar']);
             }
             if (!empty($gamestats['medals'])) {
 				$array['player_medals_total'] = intval($gamestats['medals']);
@@ -251,4 +252,14 @@ class fetchProfile implements ShouldQueue
 		$league = $tier->getTier($points);
 		return strtolower($league['title']);
     }
+
+    private function checkAvatar($avatar) {
+        $status = get_headers($avatar)[0];
+        $exists = stripos($status,"200 OK")? true : false;
+		if ($exists) {
+			return $avatar;
+		} else {
+			return 'https://d1u1mce87gyfbn.cloudfront.net/game/unlocks/0x02500000000002F7.png';
+        }
+	}
 }
