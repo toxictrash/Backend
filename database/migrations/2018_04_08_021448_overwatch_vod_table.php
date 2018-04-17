@@ -15,7 +15,7 @@ class OverwatchVodTable extends Migration
     {
         Schema::create('overwatch_vod', function (Blueprint $table) {
             $table->increments('id');
-            // $table->integer('player_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('youtube_id')->unique();
             $table->string('youtube_thumbnail');
             $table->string('youtube_title');

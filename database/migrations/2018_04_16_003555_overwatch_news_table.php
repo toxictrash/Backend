@@ -15,6 +15,7 @@ class OverwatchNewsTable extends Migration
     {
         Schema::create('overwatch_news', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->string('title');
             $table->string('slug')->unique();
