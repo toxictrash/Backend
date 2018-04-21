@@ -26,10 +26,10 @@ class UsersQuery extends Query
     {
         return [
             'id' => ['name' => 'id', 'type' => Type::int()],
-						'username' => ['name' => 'username', 'type' => Type::string()],
-						'email' => ['name' => 'email', 'type' => Type::string()],
-						'player_role' => ['name' => 'player_role', 'type' => Type::string()],
-						'slug' => ['name' => 'slug', 'type' => Type::string()],
+            'username' => ['name' => 'username', 'type' => Type::string()],
+            'email' => ['name' => 'email', 'type' => Type::string()],
+            'player_role' => ['name' => 'player_role', 'type' => Type::string()],
+            'slug' => ['name' => 'slug', 'type' => Type::string()],
         ];
     }
 

@@ -23,11 +23,11 @@ class UsersType extends GraphQLType
                 'description'   => 'The ID',
             ],
             'username'    => [
-                'type'          => Type::int(),
+                'type'          => Type::string(),
                 'description'   => 'The Player Name',
             ],
             'slug'    => [
-							'type'          => Type::int(),
+							'type'          => Type::string(),
 							'description'   => 'The Player Slug',
 						],
 						'email'    => [
@@ -35,7 +35,7 @@ class UsersType extends GraphQLType
 							'description'   => 'The Player Mail',
 						],
 						'player_role'    => [
-							'type'          => Type::int(),
+							'type'          => Type::string(),
 							'description'   => 'The Player Role',
 						],
 						'active'    => [
