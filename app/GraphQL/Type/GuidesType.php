@@ -33,27 +33,27 @@ class GuidesType extends GraphQLType
             'text'  => [
                 'type'          => Type::string(),
                 'description'   => 'The Guide Text',
-						],
-						'thumbnail'  => [
-							'type'          => Type::string(),
-							'description'   => 'The Guide Thumbnail',
-						],
-						'characters'  => [
-							'type'          => Type::string(),
-							'description'   => 'The Guide Characters',
-						],
-						'maps'  => [
-							'type'          => Type::string(),
-							'description'   => 'The Guide Maps',
-						],
+            ],
+            'thumbnail'  => [
+                'type'          => Type::string(),
+                'description'   => 'The Guide Thumbnail',
+            ],
+            'characters'  => [
+                'type'          => Type::string(),
+                'description'   => 'The Guide Characters',
+            ],
+            'maps'  => [
+                'type'          => Type::string(),
+                'description'   => 'The Guide Maps',
+            ],
             'active'  => [
                 'type'          =>  Type::int(),
                 'description'   => 'Is Guide Active?',
-						],
-						'created_at'  => [
-							'type'          => Type::string(),
-							'description'   => 'The Guide Creation',
-						],
+            ],
+            'created_at'  => [
+                'type'          => Type::string(),
+                'description'   => 'The Guide Creation',
+            ],
         ];
     }
 }

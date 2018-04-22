@@ -26,6 +26,7 @@ class GuidesQuery extends Query
     {
         return [
             'id' => ['name' => 'id', 'type' => Type::int()],
+            'user_id' => ['name' => 'user_id', 'type' => Type::int()],
             'title' => ['name' => 'title', 'type' => Type::string()],
             'slug' => ['name' => 'slug', 'type' => Type::string()],
             'active' => ['name' => 'active', 'type' => Type::boolean()],
@@ -39,6 +40,9 @@ class GuidesQuery extends Query
         $where = function ($query) use ($args) {
             if (isset($args['id'])) {
                 $query->where('id', $args['id']);
+            }
+            if (isset($args['user_id'])) {
+                $query->where('user_id', $args['user_id']);
             }
             if (isset($args['title'])) {
                 $query->where('title', $args['title']);

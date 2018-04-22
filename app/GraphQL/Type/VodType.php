@@ -18,7 +18,7 @@ class VodType extends GraphQLType
     public function fields()
     {
         return [
-						'id'    => [
+            'id'    => [
                 'type'          => Type::int(),
                 'description'   => 'The ID',
             ],
@@ -27,17 +27,21 @@ class VodType extends GraphQLType
                 'description'   => 'The Youtube ID',
             ],
             'youtube_thumbnail'    => [
-							'type'          => Type::string(),
-							'description'   => 'The Thumbnail',
-						],
-						'youtube_title'    => [
-							'type'          => Type::string(),
-							'description'   => 'The Title',
-						],
-						'youtube_duration'    => [
-							'type'          => Type::string(),
-							'description'   => 'The Duration',
-						],
+                'type'          => Type::string(),
+                'description'   => 'The Thumbnail',
+            ],
+            'youtube_title'    => [
+                'type'          => Type::string(),
+                'description'   => 'The Title',
+            ],
+            'youtube_duration'    => [
+                'type'          => Type::string(),
+                'description'   => 'The Duration',
+            ],
+            'users'   => [
+                'type'          => Type::listOf(GraphQL::type('users')),
+                'description'   => 'User Account',
+            ],
         ];
     }
 }

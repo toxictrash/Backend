@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Overwatch\PlaytimeModel;
 use App\Models\Overwatch\PlayersModel;
 use App\Models\Overwatch\TrendsModel;
+use App\Models\Overwatch\UsersModel;
 
 class RankingModel extends Model
 {
@@ -48,5 +49,9 @@ class RankingModel extends Model
 
 	public function trends() {
 		return $this->hasMany(TrendsModel::class, 'player_id', 'id')->orderBy('id', 'DESC');
-}
+	}
+
+	public function users() {
+		return $this->hasOne(UsersModel::class, 'user_id', 'id');
+	}
 }
