@@ -18,30 +18,42 @@ class UsersType extends GraphQLType
     public function fields()
     {
         return [
-						'id'    => [
-                'type'          => Type::int(),
-                'description'   => 'The ID',
+            'id'    => [
+            'type'          => Type::int(),
+            'description'   => 'The ID',
             ],
             'username'    => [
-                'type'          => Type::string(),
-                'description'   => 'The Player Name',
+            'type'          => Type::string(),
+            'description'   => 'The Player Name',
             ],
             'slug'    => [
-							'type'          => Type::string(),
-							'description'   => 'The Player Slug',
-						],
-						'email'    => [
-							'type'          => Type::string(),
-							'description'   => 'The Player Mail',
-						],
-						'player_role'    => [
-							'type'          => Type::string(),
-							'description'   => 'The Player Role',
-						],
-						'active'    => [
-							'type'          => Type::int(),
-							'description'   => 'The Player Status',
-						]
+            'type'          => Type::string(),
+            'description'   => 'The Player Slug',
+            ],
+            'email'    => [
+            'type'          => Type::string(),
+            'description'   => 'The Player Mail',
+            ],
+            'player_role'    => [
+            'type'          => Type::string(),
+            'description'   => 'The Player Role',
+            ],
+            'active'    => [
+            'type'          => Type::int(),
+            'description'   => 'The Player Status',
+            ],
+            'guides'    => [
+                'type'          => Type::listOf(GraphQL::type('guides')),
+                'description'   => 'User Guides',
+            ],
+            'players'    => [
+                'type'          => GraphQL::type('players'),
+                'description'   => 'Player Account',
+            ],
+            'vods'    => [
+                'type'          => Type::listOf(GraphQL::type('vods')),
+                'description'   => 'User Vods',
+            ]
         ];
     }
 }
