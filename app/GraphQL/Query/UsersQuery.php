@@ -43,16 +43,19 @@ class UsersQuery extends Query
             }
             if (isset($args['username'])) {
                 $query->where('username', $args['username']);
-						}
-						if (isset($args['email'])) {
-							$query->where('email', $args['email']);
-						}
+            }
+            if (isset($args['email'])) {
+                $query->where('email', $args['email']);
+            }
+            if (isset($args['player_role'])) {
+                $query->where('player_role', $args['player_role']);
+            }
         };
-				$trends = UsersModel::OnlyActive();
-				$trends->where($where);
-        $trends->select($select);
-        $trends->with($with);
-        $trends->orderBy('id', 'DESC');
-        return $trends->get();
+        $user = UsersModel::OnlyActive();
+        $user->where($where);
+        $user->select($select);
+        $user->with($with);
+        $user->orderBy('id', 'DESC');
+        return $user->get();
     }
 }
