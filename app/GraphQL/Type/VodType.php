@@ -22,6 +22,10 @@ class VodType extends GraphQLType
                 'type'          => Type::int(),
                 'description'   => 'The ID',
             ],
+            'user_id'    => [
+                'type'          => Type::int(),
+                'description'   => 'The Player Account',
+            ],
             'youtube_id'    => [
                 'type'          => Type::string(),
                 'description'   => 'The Youtube ID',

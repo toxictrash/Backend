@@ -22,6 +22,10 @@ class GuidesType extends GraphQLType
                 'type'          => Type::int(),
                 'description'   => 'The Guide ID',
             ],
+            'user_id'    => [
+                'type'          => Type::int(),
+                'description'   => 'The Guide Author',
+            ],
             'title'  => [
                 'type'          => Type::string(),
                 'description'   => 'The Guide Title',

@@ -22,6 +22,10 @@ class PlayersType extends GraphQLType
                 'type'          => Type::int(),
                 'description'   => 'The Player ID',
             ],
+            'user_id'    => [
+                'type'          => Type::int(),
+                'description'   => 'The Player Account',
+            ],
             'name'  => [
                 'type'          => Type::string(),
                 'description'   => 'The Player Name',
