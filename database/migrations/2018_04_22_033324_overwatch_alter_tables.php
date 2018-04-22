@@ -14,19 +14,19 @@ class OverwatchAlterTables extends Migration
     public function up()
     {
         Schema::table('overwatch_players', function($table) {
-            $table->integer('user_id')->nullable()->unsigned();
+            $table->integer('user_id')->nullable()->unsigned()->after('id');
         });
 
         Schema::table('overwatch_vod', function($table) {
-            $table->integer('user_id')->nullable()->unsigned();
+            $table->integer('user_id')->nullable()->unsigned()->after('id');
         });
 
         Schema::table('overwatch_guides', function($table) {
-            $table->integer('user_id')->nullable()->unsigned();
+            $table->integer('user_id')->nullable()->unsigned()->after('id');
         });
 
         Schema::table('overwatch_news', function($table) {
-            $table->integer('user_id')->nullable()->unsigned();
+            $table->integer('user_id')->nullable()->unsigned()->after('id');
         });
     }
 
