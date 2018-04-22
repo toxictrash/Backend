@@ -29,4 +29,7 @@ class VodModel extends Model
 			return $query->where('processed', '1');
 		}
 
+		public function users() {
+			return $this->hasOne(UsersModel::class, 'id', 'user_id');
+		}
 }

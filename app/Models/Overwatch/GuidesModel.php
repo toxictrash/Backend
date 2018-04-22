@@ -20,6 +20,6 @@ class GuidesModel extends Model
     }
 
     public function users() {
-        return $this->hasOne(UsersModel::class, 'user_id', 'id');
+        return $this->hasOne(UsersModel::class, 'id', 'user_id');
     }
 }
