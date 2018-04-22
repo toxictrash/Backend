@@ -19,7 +19,7 @@ class UsersModel extends Model
         'active',
         'last_login'
     ];
-    // protected $connection = 'overwatch';
+    protected $connection = 'overwatch';
 
     public function scopeOnlyActive($query) {
         return $query->where('active', '1');
