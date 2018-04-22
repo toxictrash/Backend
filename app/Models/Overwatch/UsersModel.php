@@ -16,7 +16,9 @@ class UsersModel extends Model
         'email',
         'password',
         'player_role',
-        'active'];
+        'active',
+        'last_login'
+    ];
     // protected $connection = 'overwatch';
 
     public function scopeOnlyActive($query) {

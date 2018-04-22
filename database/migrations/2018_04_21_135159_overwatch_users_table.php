@@ -21,6 +21,7 @@ class OverwatchUsersTable extends Migration
             $table->string( 'password' );
             $table->string( 'player_role' );
             $table->enum('active', ['0', '1'])->default('0');
+            $table->dateTime('last_login')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
