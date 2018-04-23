@@ -12,14 +12,10 @@ class GuidesModel extends Model
     use SoftDeletes;
 
     protected $table = 'overwatch_guides';
-    protected $fillable = ['title', 'slug', 'text', 'thumbnail', 'characters', 'maps', 'active', 'user_id'];
+    protected $fillable = ['title', 'slug', 'text', 'thumbnail', 'characters', 'maps', 'active'];
     protected $connection = 'overwatch';
 
     public function scopeOnlyActive($query) {
         return $query->where('active', '1');
-    }
-
-    public function users() {
-        return $this->hasOne(UsersModel::class, 'id', 'user_id');
     }
 }

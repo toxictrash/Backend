@@ -110,10 +110,6 @@ class RankingType extends GraphQLType
 					'type'          => Type::listOf(GraphQL::type('trends')),
 					'description'   => 'Player Trends',
 				],
-				'users'   => [
-					'type'          => Type::listOf(GraphQL::type('users')),
-					'description'   => 'User Account',
-				],
 			];
     }
 }

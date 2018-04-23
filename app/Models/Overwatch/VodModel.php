@@ -16,8 +16,7 @@ class VodModel extends Model
 			'youtube_title',
 			'youtube_duration',
 			'active',
-			'processed',
-			'user_id'
+			'processed'
 		];
 		protected $connection = 'overwatch';
 
@@ -27,9 +26,5 @@ class VodModel extends Model
 
 		public function scopeOnlyProcessed($query) {
 			return $query->where('processed', '1');
-		}
-
-		public function users() {
-			return $this->hasOne(UsersModel::class, 'id', 'user_id');
 		}
 }

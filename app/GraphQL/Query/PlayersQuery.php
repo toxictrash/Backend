@@ -26,7 +26,6 @@ class PlayersQuery extends Query
     {
         return [
             'id' => ['name' => 'id', 'type' => Type::int()],
-            'user_id' => ['name' => 'user_id', 'type' => Type::int()],
             'name' => ['name' => 'name', 'type' => Type::string()],
             'slug' => ['name' => 'slug', 'type' => Type::string()],
             'hashtag' => ['name' => 'hashtag', 'type' => Type::string()],
@@ -41,9 +40,6 @@ class PlayersQuery extends Query
         $where = function ($query) use ($args) {
             if (isset($args['id'])) {
                 $query->where('id', $args['id']);
-            }
-            if (isset($args['user_id'])) {
-                $query->where('user_id', $args['user_id']);
             }
             if (isset($args['name'])) {
                 $query->where('name', $args['name']);

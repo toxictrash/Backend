@@ -22,10 +22,6 @@ class PlayersType extends GraphQLType
                 'type'          => Type::int(),
                 'description'   => 'The Player ID',
             ],
-            'user_id'    => [
-                'type'          => Type::int(),
-                'description'   => 'The Player Account',
-            ],
             'name'  => [
                 'type'          => Type::string(),
                 'description'   => 'The Player Name',
@@ -53,10 +49,6 @@ class PlayersType extends GraphQLType
             'trends'   => [
                 'type'          => Type::listOf(GraphQL::type('trends')),
                 'description'   => 'Player Trends',
-            ],
-            'users'   => [
-                'type'          => Type::listOf(GraphQL::type('users')),
-                'description'   => 'Player User Account',
             ],
         ];
     }
