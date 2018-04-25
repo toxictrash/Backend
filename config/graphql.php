@@ -13,6 +13,8 @@ use App\GraphQL\Type\VodType;
 use App\GraphQL\Mutation\VodMutation;
 use App\GraphQL\Query\GuidesQuery;
 use App\GraphQL\Type\GuidesType;
+use App\GraphQL\Query\NewsQuery;
+use App\GraphQL\Type\NewsType;
 
 return [
     'prefix' => 'graphql',
@@ -28,7 +30,8 @@ return [
                 'playerQuery'   => PlayersQuery::class,
                 'trendsQuery'   => TrendsQuery::class,
                 'vodQuery'      => VodQuery::class,
-                'guidesQuery'      => GuidesQuery::class
+                'guidesQuery'   => GuidesQuery::class,
+                'NewsQuery'     => NewsQuery::class
             ],
             'mutation' => [
                 'vodMutation'   => VodMutation::class,
@@ -44,7 +47,8 @@ return [
         'players'   => PlayersType::class,
         'trends'    => TrendsType::class,
         'vods'      => VodType::class,
-        'guides'    => GuidesType::class
+        'guides'    => GuidesType::class,
+        'news'      => NewsType::class
     ],
     'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
     'params_key'    => 'params',
