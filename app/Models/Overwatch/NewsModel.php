@@ -13,7 +13,7 @@ class NewsModel extends Model
 
     protected $table = 'overwatch_news';
     protected $fillable = ['category_id', 'title', 'slug', 'text', 'active'];
-    // protected $connection = 'overwatch';
+    protected $connection = 'overwatch';
 
     public function scopeOnlyActive($query) {
         return $query->where('active', '1');
