@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Overwatch\RankingModel;
 use App\Models\Overwatch\PlaytimeModel;
 use App\Models\Overwatch\TrendsModel;
-use App\Models\Overwatch\UsersModel;
 
 class PlayersModel extends Model
 {

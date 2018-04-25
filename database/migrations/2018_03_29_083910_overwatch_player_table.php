@@ -15,7 +15,6 @@ class OverwatchPlayerTable extends Migration
     {
         Schema::create('overwatch_players', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->unique();
             $table->string( 'name' )->unique();
             $table->string( 'slug' );
             $table->string( 'hashtag' );
