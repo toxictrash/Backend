@@ -13,7 +13,14 @@ class OverwatchNewsCategoryTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('overwatch_news_category', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->enum('active', ['0', '1'])->default('0');
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class OverwatchNewsCategoryTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('overwatch_news_category');
     }
 }
