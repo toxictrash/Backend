@@ -31,7 +31,7 @@ return [
                 'trendsQuery'   => TrendsQuery::class,
                 'vodQuery'      => VodQuery::class,
                 'guidesQuery'   => GuidesQuery::class,
-                'NewsQuery'     => NewsQuery::class
+                'newsQuery'     => NewsQuery::class
             ],
             'mutation' => [
                 'vodMutation'   => VodMutation::class,
