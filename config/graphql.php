@@ -15,6 +15,7 @@ use App\GraphQL\Query\GuidesQuery;
 use App\GraphQL\Type\GuidesType;
 use App\GraphQL\Query\NewsQuery;
 use App\GraphQL\Type\NewsType;
+use App\GraphQL\Type\VisitorType;
 use App\GraphQL\Mutation\VisitorMutation;
 
 return [
@@ -50,7 +51,8 @@ return [
         'trends'    => TrendsType::class,
         'vods'      => VodType::class,
         'guides'    => GuidesType::class,
-        'news'      => NewsType::class
+        'news'      => NewsType::class,
+        'visitor'   => VisitorType::class
     ],
     'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
     'params_key'    => 'params',
