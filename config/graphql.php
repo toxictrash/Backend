@@ -15,6 +15,7 @@ use App\GraphQL\Query\GuidesQuery;
 use App\GraphQL\Type\GuidesType;
 use App\GraphQL\Query\NewsQuery;
 use App\GraphQL\Type\NewsType;
+use App\GraphQL\Mutation\VisitorMutation;
 
 return [
     'prefix' => 'graphql',
@@ -34,7 +35,8 @@ return [
                 'newsQuery'     => NewsQuery::class
             ],
             'mutation' => [
-                'vodMutation'   => VodMutation::class,
+                'vodMutation'       => VodMutation::class,
+                'visitorMutation'   => VisitorMutation::class
             ],
             'middleware' => [
                 'api'
