@@ -47,6 +47,6 @@ class RankingModel extends Model
 	}
 
 	public function trends() {
-		return $this->hasMany(TrendsModel::class, 'player_id', 'id')->orderBy('id', 'DESC');
+		return $this->hasMany(TrendsModel::class, 'player_id', 'player_id')->orderBy('id', 'DESC');
 	}
 }
