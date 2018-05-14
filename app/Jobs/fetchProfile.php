@@ -130,7 +130,7 @@ class fetchProfile implements ShouldQueue
 				$array['player_games_won'] = intval($gamestats['games_won']);
             }
             if (!empty($gamestats['games_lost'])) {
-				$array['player_games_lose'] = intval($gamestats['games_lost']);
+			    $array['player_games_lose'] = intval($gamestats['games_lost']);
 			} else {
 				$wins = intval($gamestats['games_won']);
 				$draws = intval($gamestats['games_tied']);
@@ -139,7 +139,9 @@ class fetchProfile implements ShouldQueue
             }
             if (!empty($gamestats['games_tied'])) {
 				$array['player_games_draw'] = intval($gamestats['games_tied']);
-			}
+			} else {
+                $array['player_games_draw'] = 0;
+            }
 			if (!empty($gamestats['healing_done'])) {
 				$array['player_healing_done'] = intval($gamestats['healing_done']);
 			}
