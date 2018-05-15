@@ -1,3 +1,4 @@
 *
 !public/
 !.gitignore
+!service-account-credentials.json
