@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use \App\Models\Mirror\CalenderModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,10 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::get('/mirror/events', function() {
+    $events = new CalenderModel();
+    return $events->loadCalendar();
 });

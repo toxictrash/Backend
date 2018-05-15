@@ -13,6 +13,9 @@
 
 Route::get('/', function () {
     return abort(404);
+    // $calendar = new App\Http\Controllers\Mirror\CronjobController();
+    // dd($calendar->getModel());
+    // $calendar->getModel();
     // $overwatch = new App\Http\Controllers\API\Overwatch\CronjobController();
     // $overwatch->setPlayerData();
     //$overwatch->fetchApiData();
