@@ -21,11 +21,11 @@ class BlogType extends GraphQLType
             'id'    => [
                 'type'          => Type::int(),
                 'description'   => 'The Post ID',
-						],
-						'category_id'    => [
-							'type'          => Type::int(),
-							'description'   => 'The Post Category ID',
-						],
+            ],
+            'category_id'    => [
+                'type'          => Type::int(),
+                'description'   => 'The Post Category ID',
+            ],
             'title'  => [
                 'type'          => Type::string(),
                 'description'   => 'The Post Title',
@@ -41,11 +41,7 @@ class BlogType extends GraphQLType
             'active'  => [
                 'type'          =>  Type::int(),
                 'description'   => 'Is Post Active?',
-            ],
-            'created_at'  => [
-                'type'          => Type::string(),
-                'description'   => 'The Post Creation',
-            ],
+            ]
         ];
     }
 }
