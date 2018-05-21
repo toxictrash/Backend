@@ -5,7 +5,7 @@ namespace App\GraphQL\Type;
 use GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 use GraphQL\Type\Definition\Type;
-use App\Models\Overwatch\PostsModel;
+use App\Models\Blog\PostsModel;
 
 class BlogType extends GraphQLType
 {
