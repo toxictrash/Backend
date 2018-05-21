@@ -17,6 +17,8 @@ use App\GraphQL\Query\NewsQuery;
 use App\GraphQL\Type\NewsType;
 use App\GraphQL\Type\VisitorType;
 use App\GraphQL\Mutation\VisitorMutation;
+use App\GraphQL\Query\BlogQuery;
+use App\GraphQL\Type\BlogType;
 
 return [
     'prefix' => 'graphql',
@@ -33,7 +35,8 @@ return [
                 'trendsQuery'   => TrendsQuery::class,
                 'vodQuery'      => VodQuery::class,
                 'guidesQuery'   => GuidesQuery::class,
-                'newsQuery'     => NewsQuery::class
+                'newsQuery'     => NewsQuery::class,
+                'blogQuery'     => BlogQuery::class
             ],
             'mutation' => [
                 'vodMutation'       => VodMutation::class,
@@ -52,7 +55,8 @@ return [
         'vods'      => VodType::class,
         'guides'    => GuidesType::class,
         'news'      => NewsType::class,
-        'visitor'   => VisitorType::class
+        'visitor'   => VisitorType::class,
+        'posts'     => BlogType::class
     ],
     'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
     'params_key'    => 'params',
