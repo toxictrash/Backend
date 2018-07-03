@@ -60,7 +60,7 @@ class overwatchprofile extends Command
                     $player->updated_at = Carbon::now();
                     $player->save();
                 } catch(\Exception $e) {
-                    $this->info('Error while fetching Data for ' . $user . ' -> ' . $e);
+                    $this->info('Error while fetching Data for ' . $user . ' -> ' . $e->getMessage());
                     continue;
                 }
             }

@@ -44,11 +44,13 @@ class fetchProfile implements ShouldQueue
      */
     public function handle()
     {
-        $data = $this->getApiData();
-        $this->savePlayerOldRanking();
-        $this->savePlayerRanking($data);
-        $this->updatePlayerPlaytime($data);
-        $this->updatePlayer();
+        try {
+            $data = $this->getApiData();
+            $this->savePlayerOldRanking();
+            $this->savePlayerRanking($data);
+            $this->updatePlayerPlaytime($data);
+            $this->updatePlayer();
+        } catch(\Exception $e) { }
     }
 
 
