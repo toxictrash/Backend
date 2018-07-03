@@ -49,15 +49,19 @@ class overwatchprofile extends Command
                 $tag = $player->hashtag;
                 $userId = $player->id;
                 //
-                $this->dispatch((new fetchProfile([
-                    'user'      => $user,
-                    'tag'       => $tag,
-                    'userId'    => $userId
-                ]))->onQueue('overwatch_profiles'));
-                sleep(10);
-                $this->info('Fetching Data for ' . $user . ' finished.');
-                $player->updated_at = Carbon::now();
-			    $player->save();
+                try {
+                    $this->dispatch((new fetchProfile([
+                        'user'      => $user,
+                        'tag'       => $tag,
+                        'userId'    => $userId
+                    ]))->onQueue('overwatch_profiles'));
+                    sleep(10);
+                    $this->info('Fetching Data for ' . $user . ' finished.');
+                    $player->updated_at = Carbon::now();
+                    $player->save();
+                } catch(\Exception $e) {
+                    $this->info('Error while fetching Data for ' . $user . ' -> ' . $e);
+                }
             }
         }
     }
