@@ -61,6 +61,7 @@ class overwatchprofile extends Command
                     $player->save();
                 } catch(\Exception $e) {
                     $this->info('Error while fetching Data for ' . $user . ' -> ' . $e);
+                    continue;
                 }
             }
         }
