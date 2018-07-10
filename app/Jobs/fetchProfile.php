@@ -26,6 +26,14 @@ class fetchProfile implements ShouldQueue
     private $profile = [];
     private $savedRanking = false;
     private $savedPlaytime = false;
+    private $crawlerData = [
+        'avatar'        => null,
+        'level'         => 1,
+        'prestige'      => 0,
+        'endorsement'   => 1,
+        'tier'          => null,
+        'rank'          => 0,
+    ];
 
     /**
      * Create a new job instance.
@@ -50,7 +58,9 @@ class fetchProfile implements ShouldQueue
             $this->savePlayerRanking($data);
             $this->updatePlayerPlaytime($data);
             $this->updatePlayer();
-        } catch(\Exception $e) { }
+        } catch(\Exception $e) {
+            $data = $this->getCrawlerData();
+        }
     }
 
 
@@ -61,6 +71,11 @@ class fetchProfile implements ShouldQueue
         $response = $client->get($url);
         $json = json_decode($response->getBody()->getContents(), true);
         return $json['eu'];
+    }
+
+    private function getCrawlerData() {
+        $bnetAccount = $this->profile['user'] . "-" .  $this->profile['tag'];
+        dd($bnetAccount);
     }
 
     private function savePlayerOldRanking() {
