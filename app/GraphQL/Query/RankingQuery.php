@@ -44,6 +44,7 @@ class RankingQuery extends Query
             'deaths' => ['name' => 'deaths', 'type' => Type::int()],
             'kpd' => ['name' => 'kpd', 'type' => Type::string()],
             'character_role' => ['name' => 'kpd', 'type' => Type::string()],
+            'private' => ['name' => 'private', 'type' => Type::int()],
         ];
     }
 

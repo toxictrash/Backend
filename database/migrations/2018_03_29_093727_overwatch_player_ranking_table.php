@@ -35,6 +35,7 @@ class OverwatchPlayerRankingTable extends Migration
             $table->integer('player_kills')->unsigned()->default(0);
             $table->integer('player_deaths')->unsigned()->default(0);
             $table->string('player_kpd')->default('0');
+            $table->enum('private', ['0', '1'])->default('1');
             $table->timestamps();
             $table->softDeletes();
         });

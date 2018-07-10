@@ -110,6 +110,10 @@ class RankingType extends GraphQLType
 					'type'          => Type::listOf(GraphQL::type('trends')),
 					'description'   => 'Player Trends',
 				],
+				'private'    => [
+					'type'          => Type::int(),
+					'description'   => 'Indicates if Profile is Private or Not',
+				],
 			];
     }
 }

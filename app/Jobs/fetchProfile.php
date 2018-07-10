@@ -18,6 +18,7 @@ use App\Models\Overwatch\TrendsModel;
 
 use GuzzleHttp\Client;
 use Carbon\Carbon;
+use Symfony\Component\DomCrawler\Crawler;
 
 class fetchProfile implements ShouldQueue
 {
@@ -26,14 +27,6 @@ class fetchProfile implements ShouldQueue
     private $profile = [];
     private $savedRanking = false;
     private $savedPlaytime = false;
-    private $crawlerData = [
-        'avatar'        => null,
-        'level'         => 1,
-        'prestige'      => 0,
-        'endorsement'   => 1,
-        'tier'          => null,
-        'rank'          => 0,
-    ];
 
     /**
      * Create a new job instance.
@@ -58,8 +51,12 @@ class fetchProfile implements ShouldQueue
             $this->savePlayerRanking($data);
             $this->updatePlayerPlaytime($data);
             $this->updatePlayer();
+            $this->setProfilePublic();
         } catch(\Exception $e) {
-            $data = $this->getCrawlerData();
+            $this->setProfilePrivate();
+            $masthead = $this->getCrawlerData();
+            $this->getProfileAvatar($masthead);
+            $this->getProfileRanking($masthead);
         }
     }
 
@@ -75,7 +72,13 @@ class fetchProfile implements ShouldQueue
 
     private function getCrawlerData() {
         $bnetAccount = $this->profile['user'] . "-" .  $this->profile['tag'];
-        dd($bnetAccount);
+        $url = "https://playoverwatch.com/de-de/career/pc/" . urlencode($bnetAccount);
+        $client = new Client();
+        $response = $client->get($url);
+        $html = $response->getBody()->getContents();
+        $crawler = new Crawler($html);
+        $masthead = $crawler->filter('.masthead');
+        return $masthead;
     }
 
     private function savePlayerOldRanking() {
@@ -280,5 +283,54 @@ class fetchProfile implements ShouldQueue
 		} else {
 			return 'https://d1u1mce87gyfbn.cloudfront.net/game/unlocks/0x02500000000002F7.png';
         }
-	}
+    }
+
+    private function setProfilePrivate() {
+        RankingModel::where('id', $this->profile['userId'])->update([
+            'private' => '1'
+        ]);
+        PlaytimeModel::where('player_id', $this->profile['userId'])->delete();
+    }
+
+    private function setProfilePublic() {
+        RankingModel::where('id', $this->profile['userId'])->update([
+            'private' => '0'
+        ]);
+    }
+
+    private function getProfileAvatar($masthead) {
+        $infos = $masthead->filter('.masthead-player');
+        $avatar = $infos->filter('img.player-portrait')->attr('src');
+        //
+        RankingModel::where('id', $this->profile['userId'])->update([
+            'player_avatar' => $avatar
+        ]);
+    }
+
+    private function getProfileRanking($masthead) {
+        $progression = $masthead->filter('.masthead-player-progression');
+        $competitive = $progression->filter('.competitive-rank');
+        $tierPicture = $competitive->filter('img')->attr('src');
+        $sr = $competitive->filter('.h5')->text();
+        //
+        RankingModel::where('id', $this->profile['userId'])->update([
+            'player_ranking' => $sr,
+            'player_should_tier' => $this->checkPoints($sr),
+            'player_current_tier' => $this->getCurrentTier($tierPicture)
+        ]);
+    }
+
+    private function getCurrentTier($pic) {
+        $pic = str_replace('https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/season-2/', '', $pic);
+        $pic = str_replace('.png', '', $pic);
+        $pic = str_replace('rank-1', 'bronze', $pic);
+        $pic = str_replace('rank-2', 'silver', $pic);
+        $pic = str_replace('rank-3', 'gold', $pic);
+        $pic = str_replace('rank-4', 'platinum', $pic);
+        $pic = str_replace('rank-5', 'diamond', $pic);
+        $pic = str_replace('rank-6', 'masters', $pic);
+        $pic = str_replace('rank-7', 'grandmasters', $pic);
+        return $pic;
+    }
+
 }

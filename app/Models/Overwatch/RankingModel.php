@@ -35,6 +35,7 @@ class RankingModel extends Model
 			'player_kills',
 			'player_deaths',
 			'player_kpd',
+			'private'
 		];
 		protected $connection = 'overwatch';
 
