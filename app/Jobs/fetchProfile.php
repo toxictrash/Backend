@@ -54,6 +54,7 @@ class fetchProfile implements ShouldQueue
             $this->setProfilePublic();
         } catch(\Exception $e) {
             $this->setProfilePrivate();
+            $this->savePlayerOldRanking();
             $masthead = $this->getCrawlerData();
             $this->getProfileAvatar($masthead);
             $this->getProfileRanking($masthead);
