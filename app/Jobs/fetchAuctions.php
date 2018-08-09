@@ -38,7 +38,7 @@ class fetchAuctions implements ShouldQueue {
 			$fileUrl = $json['files'][0]['url'];
 			$response = $client->get($fileUrl);
 			$json = json_decode($response->getBody()->getContents(), true);
-			$items = collect($json['auctions'])->forPage(1, 100);
+			$items = collect($json['auctions']);//->forPage(1, 100);
 			//
 			AuctionModel::truncate();
 			//
