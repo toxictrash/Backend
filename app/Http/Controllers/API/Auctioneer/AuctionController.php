@@ -2,17 +2,14 @@
 namespace App\Http\Controllers\API\Auctioneer;
 
 use GuzzleHttp\Client;
+use App\Http\Controllers\Controller as BaseController;
+use App\Models\Auctioneer\AuctionModel;
 
-class AuctionController extends OverwatchController {
+class AuctionController extends BaseController {
 
-	public function getAuctionData($region, $server, $locale) {
-		$apiKey = env('BLIZZARD_KEY', 'NONE');
-		$url = "https://{$region}.api.battle.net/wow/auction/data/{$server}?locale={$locale}&apikey=${apiKey}";
-		//
-		$client = new Client();
-		$response = $client->get($url);
-		$json = json_decode($response->getBody()->getContents(), true);
-		return $json;
+	public function getAuctionData($page = 1) {
+		$collection = AuctionModel::orderBy('id', 'ASC')->get();
+		return collect($collection)->forPage($page, 100);
 	}
 
 }
