@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\overwatchprofile;
 use App\Console\Commands\YoutubeVideo;
+use App\Console\Commands\WarcraftAuctions;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         overwatchprofile::class,
-        YoutubeVideo::class
+        YoutubeVideo::class,
+        WarcraftAuctions::class
     ];
 
     /**
@@ -29,6 +31,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('warcraft:auction:fetch eu kazzak')->dailyAt('22:00');
         $schedule->command('overwatch:fetch')->dailyAt('23:30');
     }
 

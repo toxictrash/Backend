@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use \App\Models\Mirror\CalenderModel;
+use \App\Models\Auctioneer\AuctionModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,9 @@ Route::get('/mirror/events', function() {
     $events = new CalenderModel();
     return $events->loadCalendar();
 });
+
+Route::get('/auctioneer', function() {
+    return AuctionModel::all();
+});
+
+// Route:::middleware('cors')->get('/auctioneer/{$region}/{$server}/{$locale}', 'API\Auctioneer\AuctionController@getAuctionData');

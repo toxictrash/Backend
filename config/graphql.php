@@ -19,6 +19,8 @@ use App\GraphQL\Type\VisitorType;
 use App\GraphQL\Mutation\VisitorMutation;
 use App\GraphQL\Query\BlogQuery;
 use App\GraphQL\Type\BlogType;
+use App\GraphQL\Query\AuctionQuery;
+use App\GraphQL\Type\AuctionType;
 
 return [
     'prefix' => 'graphql',
@@ -36,7 +38,8 @@ return [
                 'vodQuery'      => VodQuery::class,
                 'guidesQuery'   => GuidesQuery::class,
                 'newsQuery'     => NewsQuery::class,
-                'blogQuery'     => BlogQuery::class
+                'blogQuery'     => BlogQuery::class,
+                'auctionQuery'  => AuctionQuery::class
             ],
             'mutation' => [
                 'vodMutation'       => VodMutation::class,
@@ -56,7 +59,8 @@ return [
         'guides'    => GuidesType::class,
         'news'      => NewsType::class,
         'visitor'   => VisitorType::class,
-        'posts'     => BlogType::class
+        'posts'     => BlogType::class,
+        'auctions'  => AuctionType::class
     ],
     'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
     'params_key'    => 'params',
