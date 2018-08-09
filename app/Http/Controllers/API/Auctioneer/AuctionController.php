@@ -7,9 +7,8 @@ use App\Models\Auctioneer\AuctionModel;
 
 class AuctionController extends BaseController {
 
-	public function getAuctionData($page = 1) {
-		$collection = AuctionModel::orderBy('id', 'ASC')->get();
-		return collect($collection)->forPage($page, 100);
+	public function getAuctionData() {
+		return AuctionModel::orderBy('id', 'ASC')->paginate(100);
 	}
 
 }
