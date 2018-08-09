@@ -154,6 +154,7 @@ return [
         Fadion\Maneuver\ManeuverServiceProvider::class,
         Alaouy\Youtube\YoutubeServiceProvider::class,
         Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
         /*
          * Application Service Providers...
