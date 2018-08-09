@@ -24,7 +24,7 @@ Route::get('/mirror/events', function() {
     return $events->loadCalendar();
 });
 
-Route::get('/auctioneer', '\App\Http\Controllers\API\Auctioneer\AuctionController@getAuctionData');
+Route::get('/auctioneer', '\App\Http\Controllers\API\Auctioneer\AuctionController@getAuctionData')->middleware('api');
 
 /*Route::get('/auctioneer', function() {
     return AuctionModel::all();
