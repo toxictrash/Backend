@@ -25,8 +25,14 @@ Route::get('/mirror/events', function() {
     return $events->loadCalendar();
 });
 
-Route::middleware('cors')
-    ->get('/auctioneer', '\App\Http\Controllers\API\Auctioneer\AuctionController@getAuctionData');
+/*Route::middleware('cors')
+    ->get('/auctioneer', '\App\Http\Controllers\API\Auctioneer\AuctionController@getAuctionData');*/
+
+
+Route::get('/auctioneer', '\App\Http\Controllers\API\Auctioneer\AuctionController@getAuctionData');
+Route::get('/auctioneer/data', function() {
+    return AuctionModel::pagination(100);
+});
 
 /*Route::get('/auctioneer', function() {
     return AuctionModel::all();
