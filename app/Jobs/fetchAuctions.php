@@ -21,6 +21,7 @@ class fetchAuctions implements ShouldQueue {
 
 	public function __construct($options)
 	{
+		AuctionModel::truncate();
 		$this->options = $options;
 	}
 
@@ -38,8 +39,7 @@ class fetchAuctions implements ShouldQueue {
 			//
 			$promise->then(function($response) {
 				$json = json_decode($response->getBody()->getContents(), true);
-				AuctionModel::truncate();
-				foreach($items as $item) {
+				foreach($json as $item) {
 					$array = [
 						'item_id' 		=> $item['item'],
 						'owner'				=> $item['owner'],
@@ -54,6 +54,7 @@ class fetchAuctions implements ShouldQueue {
 					$model = new AuctionModel($array);
 					$model->save();
 				}
+				dd($json);
 			});
 			$promise->wait();
 			//
@@ -77,46 +78,5 @@ class fetchAuctions implements ShouldQueue {
 		$client = new Client();
 			$promise = $client->getAsync($fileUrl);
 			return $promise;
-	}
-
-	public function OLDhandle()
-  {
-		$region = $this->options['region'];
-		$server = $this->options['server'];
-		$locale = $this->options['locale'];
-		//
-		try {
-			$apiKey = env('BLIZZARD_KEY', 'NONE');
-			$url = "https://{$region}.api.battle.net/wow/auction/data/{$server}?locale={$locale}&apikey=${apiKey}";
-			//
-			$client = new Client();
-			$response = $client->get($url);
-			$json = json_decode($response->getBody()->getContents(), true);
-			//
-			$fileUrl = $json['files'][0]['url'];
-			$response = $client->get($fileUrl);
-			$json = json_decode($response->getBody()->getContents(), true);
-			$items = collect($json['auctions']);//->forPage(1, 100);
-			//
-			AuctionModel::truncate();
-			//
-			foreach($items as $item) {
-				$array = [
-					'item_id' 		=> $item['item'],
-					'owner'				=> $item['owner'],
-					'ownerRealm'	=> $item['ownerRealm'],
-					'slug'				=> str_slug($item['auc'] . '-' . $item['owner'] . '-' . $item['ownerRealm']),
-					'bid'					=> $item['bid'],
-					'buyout'			=> $item['buyout'],
-					'quantity'		=> $item['quantity'],
-					'timeLeft'		=> $item['timeLeft']
-				];
-				//
-				$model = new AuctionModel($array);
-				$model->save();
-			}
-		} catch(\Exception $e) {
-			throw new \Exception($e->getMessage());
-		}
 	}
 }
