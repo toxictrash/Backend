@@ -62,11 +62,10 @@ class fetchAuctions implements ShouldQueue {
 		});
 		$promise->wait();
 		$items = Cache::get('AuctionData');
-		/*foreach($items as $item) {
+		foreach($items as $item) {
 			$model = new AuctionModel($item);
 			$model->save();
-		}*/
-		dd($items);
+		}
 	}
 
 
