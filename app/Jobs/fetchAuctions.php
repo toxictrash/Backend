@@ -12,6 +12,7 @@ use \GuzzleHttp\Psr7\Request;
 use Carbon\Carbon;
 use App\Models\Auctioneer\AuctionModel;
 use App\Helpers\Auctioneer\BigFile;
+use Illuminate\Support\Facades\Cache;
 
 class fetchAuctions implements ShouldQueue {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -29,14 +30,58 @@ class fetchAuctions implements ShouldQueue {
 		$region = $this->options['region'];
 		$server = $this->options['server'];
 		$locale = $this->options['locale'];
+		$apiKey = env('BLIZZARD_KEY', 'NONE');
+		$promises = [];
+		//
+		$url = "https://{$region}.api.battle.net/wow/auction/data/{$server}?locale={$locale}&apikey=${apiKey}";
+		//
+		$client = new Client();
+		$response = $client->get($url);
+		$json = json_decode($response->getBody()->getContents(), true);
+		$jsonUrl = $json['files'][0]['url'];
+		//
+		$promise = $client->requestAsync('GET', $jsonUrl);
+		$promise->then(function($response) {
+			$auc = [];
+			$data = json_decode($response->getBody()->getContents(), true);
+			$auctions = $data['auctions'];
+			foreach($auctions as $item) {
+				$auc[] = [
+					'item_id' 		=> $item['item'],
+					'owner'				=> $item['owner'],
+					'ownerRealm'	=> $item['ownerRealm'],
+					'slug'				=> str_slug($item['auc'] . '-' . $item['owner'] . '-' . $item['ownerRealm']),
+					'bid'					=> $item['bid'],
+					'buyout'			=> $item['buyout'],
+					'quantity'		=> $item['quantity'],
+					'timeLeft'		=> $item['timeLeft']
+				];
+			}
+			Cache::put('AuctionData', $auc, 5);
+			return true;
+		});
+		$promise->wait();
+		$items = collect(Cache::get('AuctionData'));
+		foreach($items as $item) {
+			$model = new AuctionModel($item);
+			$model->save();
+		}
+	}
+
+
+	public function handleOLD() {
+		$region = $this->options['region'];
+		$server = $this->options['server'];
+		$locale = $this->options['locale'];
 		//
 		try {
 			$apiKey = env('BLIZZARD_KEY', 'NONE');
 			$url = "https://{$region}.api.battle.net/wow/auction/data/{$server}?locale={$locale}&apikey=${apiKey}";
+			$client = new Client();
 			//
-			$jsonUrl = $this->getJsonURL($url);
-			$promise = $this->getJsonData($jsonUrl);
+			$jsonUrl = $this->getJsonURL($client, $url);
 			//
+			$promise = $client->getAsync($jsonUrl);
 			$promise->then(function($response) {
 				$json = json_decode($response->getBody()->getContents(), true);
 				foreach($json as $item) {
@@ -51,10 +96,10 @@ class fetchAuctions implements ShouldQueue {
 						'timeLeft'		=> $item['timeLeft']
 					];
 					//
+					dd($array);
 					$model = new AuctionModel($array);
 					$model->save();
 				}
-				dd($json);
 			});
 			$promise->wait();
 			//
@@ -63,20 +108,13 @@ class fetchAuctions implements ShouldQueue {
 		}
 	}
 
-	private function getJsonURL($apiUrl) {
+	private function getJsonURL($client, $apiUrl) {
 		try {
-			$client = new Client();
 			$response = $client->get($apiUrl);
 			$json = json_decode($response->getBody()->getContents(), true);
 			return $json['files'][0]['url'];
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage());
 		}
-	}
-
-	private function getJsonData($fileUrl) {
-		$client = new Client();
-			$promise = $client->getAsync($fileUrl);
-			return $promise;
 	}
 }
