@@ -34,7 +34,7 @@ Route::get('/auctioneer/items/set', function() {
     $item = new App\Http\Controllers\API\Auctioneer\AuctionController();
     $item->setItemsData();
 });
-Route::get('/auctioneer/items/set/{itemId}', function() {
+Route::get('/auctioneer/items/set/{itemId}', function($itemId) {
     $item = new App\Http\Controllers\API\Auctioneer\AuctionController($itemId);
     $item->setItemData($itemId);
 });
