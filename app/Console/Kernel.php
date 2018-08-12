@@ -7,6 +7,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\overwatchprofile;
 use App\Console\Commands\YoutubeVideo;
 use App\Console\Commands\WarcraftAuctions;
+use App\Console\Commands\WarcraftItems;
 
 class Kernel extends ConsoleKernel
 {
@@ -18,7 +19,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         overwatchprofile::class,
         YoutubeVideo::class,
-        WarcraftAuctions::class
+        WarcraftAuctions::class,
+        WarcraftItems::class
     ];
 
     /**

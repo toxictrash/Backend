@@ -26,7 +26,15 @@ Route::get('/mirror/events', function() {
 });
 
 
-Route::get('/auctioneer', '\App\Http\Controllers\API\Auctioneer\AuctionController@getAuctionData');
-Route::get('/auctioneer/data', function() {
-    return AuctionModel::paginate(100);
+Route::get('/auctioneer/data/{server}', function($server) {
+    $auctions = new App\Http\Controllers\API\Auctioneer\AuctionController();
+    return $auctions->getAuctionData($server);
+});
+Route::get('/auctioneer/items/set', function() {
+    $item = new App\Http\Controllers\API\Auctioneer\AuctionController();
+    $item->setItemData();
+});
+Route::get('/auctioneer/items/{itemId}', function($itemId) {
+    $item = new App\Http\Controllers\API\Auctioneer\AuctionController();
+    dd($item->getItemData($itemId));
 });

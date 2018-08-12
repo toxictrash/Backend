@@ -26,6 +26,18 @@ class AuctioneerAuctionTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::create('wow_items', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('item_id')->unsigned();
+            $table->string('title');
+            $table->string('slug', 255)->unique();
+            $table->text('description');
+            $table->string('icon');
+            $table->integer('quality')->unsigned();
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -36,5 +48,6 @@ class AuctioneerAuctionTable extends Migration
     public function down()
     {
         Schema::drop('wow_auctions');
+        Schema::drop('wow_items');
     }
 }

@@ -18,7 +18,6 @@ class fetchAuctions implements ShouldQueue {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
 	private $options = [];
-	private $bigFile = null;
 
 	public function __construct($options)
 	{
