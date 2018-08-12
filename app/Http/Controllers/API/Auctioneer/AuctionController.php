@@ -17,7 +17,7 @@ class AuctionController extends BaseController {
 		return ItemModel::where('item_id', $itemId)->first();
 	}
 
-	public function setItemData() {
+	public function setItemsData() {
 		$itemIds = [];
 		$items = AuctionModel::orderBy('item_id', 'ASC')->get();
 		foreach($items as $item) {
@@ -32,6 +32,13 @@ class AuctionController extends BaseController {
 				'region'	=> 'eu'
 			]);
 		}
+	}
+
+	public function setItemData($itemId) {
+		\Artisan::call('warcraft:items:fetch', [
+			'itemId' 	=> $itemId,
+			'region'	=> 'eu'
+		]);
 	}
 
 }

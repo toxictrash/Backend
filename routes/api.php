@@ -32,9 +32,13 @@ Route::get('/auctioneer/data/{server}', function($server) {
 });
 Route::get('/auctioneer/items/set', function() {
     $item = new App\Http\Controllers\API\Auctioneer\AuctionController();
-    $item->setItemData();
+    $item->setItemsData();
+});
+Route::get('/auctioneer/items/set/{itemId}', function() {
+    $item = new App\Http\Controllers\API\Auctioneer\AuctionController($itemId);
+    $item->setItemData($itemId);
 });
 Route::get('/auctioneer/items/{itemId}', function($itemId) {
     $item = new App\Http\Controllers\API\Auctioneer\AuctionController();
-    dd($item->getItemData($itemId));
+    return $item->getItemData($itemId);
 });
